@@ -3,6 +3,7 @@ package com.bjz.cnninference;
 import com.bjz.cnninference.activations.ReLUActivation;
 import com.bjz.cnninference.layers.ActivationLayer;
 import com.bjz.cnninference.layers.Layer;
+import com.bjz.cnninference.layers.MaxPoolingLayer;
 import com.bjz.cnninference.utils.MathUtils;
 
 /**
@@ -10,14 +11,12 @@ import com.bjz.cnninference.utils.MathUtils;
  */
 public class Main {
     public static void main(String[] args) {
-        double[][] a = new double[1][21000];
-        double[][] b = new double[21000][100];
-        double[][] c = new double[1][100];
+        double[][] a = new double[100][100];
 
 
-        Layer layer = new ActivationLayer(new ReLUActivation(), b, c);
+        Layer layer = new MaxPoolingLayer();
         long start = System.currentTimeMillis();
-        double[][] result4 = layer.forward(a);
+        double[][] result = layer.forward(a);
         long end = System.currentTimeMillis();
         System.out.println(String.format("Finished in %d ms", end - start));
 
