@@ -25,7 +25,7 @@ RawBlameHistory
 .idea/dictionaries
 
 #build
-target/
+target
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
