@@ -8,7 +8,7 @@ import com.bjz.cnninference.exceptions.InvalidArgumentException;
 public class MathUtils {
 
     public static double[][] product(double[][] a, double[][] b) {
-        checkCompatibility(a, b);
+        checkProductCompatibility(a, b);
 
         double[][] result = new double[a.length][b[0].length];
 
@@ -23,9 +23,27 @@ public class MathUtils {
         return result;
     }
 
-    private static void checkCompatibility(double[][] a, double[][] b) {
+    public static double[][] add(double[][] a, double[][] b) {
+        checkAddCompatibility(a, b);
+        double[][] result = new double[a.length][a[0].length];
+
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                result[i][j] = a[i][j] + b[i][j];
+            }
+        }
+        return result;
+    }
+
+    private static void checkProductCompatibility(double[][] a, double[][] b) {
         if (a[0].length != b.length) {
             throw new InvalidArgumentException(String.format("Incompatible shapes %d and %d", a.length, b.length));
+        }
+    }
+
+    private static void checkAddCompatibility(double[][] a, double[][] b) {
+        if (a.length != b.length || a[0].length != b[0].length) {
+            throw new InvalidArgumentException(String.format("Cannot add shapes (%d, %d) and (%d, %d)", a.length, a[0].length, b.length, b[0].length));
         }
     }
 }

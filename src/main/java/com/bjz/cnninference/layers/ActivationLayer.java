@@ -9,9 +9,9 @@ import com.bjz.cnninference.utils.MathUtils;
 public class ActivationLayer implements Layer {
     private Activation activation;
     private double[][] weights;
-    private double[] biases;
+    private double[][] biases;
 
-    public ActivationLayer(Activation activation, double[][] weights, double[] biases) {
+    public ActivationLayer(Activation activation, double[][] weights, double[][] biases) {
         this.activation = activation;
         this.weights = weights;
         this.biases = biases;
@@ -25,7 +25,8 @@ public class ActivationLayer implements Layer {
      */
     public double[][] forward(double[][] x) {
         double[][] weighted = MathUtils.product(x, weights);
-        return activation.apply(x);
+        weighted = MathUtils.add(weighted, biases);
+        return activation.apply(weighted);
     }
 
 }
