@@ -6,17 +6,16 @@ import com.bjz.cnninference.utils.MathUtils;
 /**
  * Created on 2/7/2018.
  */
-public class ActivationLayer implements Layer {
+public class ActivationSimpleLayer implements SimpleLayer {
     private Activation activation;
     private double[][] weights;
     private double[][] biases;
 
-    public ActivationLayer(Activation activation, double[][] weights, double[][] biases) {
+    public ActivationSimpleLayer(Activation activation, double[][] weights, double[][] biases) {
         this.activation = activation;
         this.weights = weights;
         this.biases = biases;
     }
-
 
     /***
      *

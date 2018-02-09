@@ -5,4 +5,6 @@ package com.bjz.cnninference.activations;
  */
 public interface Activation {
     double[][] apply(double[][] x);
+
+    double[] apply(double[] x);
 }

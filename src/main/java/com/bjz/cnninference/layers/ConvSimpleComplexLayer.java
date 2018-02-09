@@ -3,21 +3,20 @@ package com.bjz.cnninference.layers;
 /**
  * Created on 2/9/2018.
  */
-public class ConvLayer implements Layer {
+public class ConvSimpleComplexLayer implements ComplexLayer {
     private boolean keepRation;
     private double[][][] filters;
     private int stride;
     private int fieldSize;
 
-    public ConvLayer(double[][][] filters, int stride, int fieldSize, boolean keepRatio) {
+    public ConvSimpleComplexLayer(double[][][] filters, int stride, int fieldSize, boolean keepRatio) {
         this.fieldSize = fieldSize;
         this.stride = stride;
         this.filters = filters;
         this.keepRation = keepRatio;
     }
 
-    // oops... ?? different dimensions for output
-    public double[][] forward(double[][] x) {
-        return null;
+    public double[][][] forward(double[][][] x) {
+        return new double[0][][];
     }
 }
