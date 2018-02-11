@@ -50,6 +50,33 @@ public class MathUtils {
         return result;
     }
 
+    public static double[][][] convolve(double[][][] target, double[][][] filters, int stride) {
+        int filterHeight = filters[0].length;
+        int filterWidth = filters[0][0].length;
+        int targetHeight = target[0].length;
+        int targetWidth = target[0][0].length;
+
+        // initialize result with it`s shrunk size
+        int outputDepth = target.length * filters.length;
+        int outputHeight = (targetHeight - filterHeight) / stride + 1;
+        int outputWidth = (targetWidth - filterWidth) / stride + 1;
+        double[][][] result = new double[outputDepth][outputHeight][outputWidth];
+        for (int i = 0; i < outputDepth; i++) {
+            for (int j = 0; j < outputHeight; j++) {
+                for (int k = 0; k < outputWidth; k++) {
+                    double comp = 0;
+                    for (int l = j; l < j + stride; j++) {
+                        for (int m = k; m < k + stride; m++) {
+                            //todo
+                            return null;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     private static void checkProductCompatibility(double[][] a, double[][] b) {
         if (a[0].length != b.length) {
             throw new InvalidArgumentException(String.format("Incompatible shapes %d and %d", a.length, b.length));
