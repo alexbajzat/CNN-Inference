@@ -35,7 +35,7 @@ public class MaxPoolingComplexLayer implements ComplexLayer {
         for (int feature = 0; feature < x.length; feature++) {
             for (int i = 0; i < x[feature].length / fieldSize; i++) {
                 for (int j = 0; j < x[feature][i].length / fieldSize; j++) {
-                    double max = Double.MIN_VALUE;
+                    double max = Double.NEGATIVE_INFINITY;
 
                     for (int k = i * stride; k < i * stride + fieldSize; k++) {
                         for (int l = j * stride; l < j * stride + fieldSize; l++) {
