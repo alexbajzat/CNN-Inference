@@ -22,6 +22,28 @@ public class MathUtils {
         return result;
     }
 
+    public static double[][] productWithKernel(double[][] a, double[][] kernel, int rowStart, int colStart) {
+        int kernelHeight = kernel.length;
+        int kernelWidth = kernel[0].length;
+        int verticalBound = rowStart + kernelHeight;
+        int horizontalBound = colStart + kernelWidth;
+
+        if (verticalBound > a.length || horizontalBound > a[0].length) {
+            throw new InvalidArgumentException(String.format("Invalid indices for product: (%d, %d)", rowStart, colStart));
+        }
+
+        double[][] result = new double[kernelHeight][kernelWidth];
+
+        for (int i = 0; i < kernelHeight; i++) {
+            for (int j = 0; j < kernelWidth; j++) {
+                for (int k = 0; k < kernelWidth; k++) {
+                    result[i][j] += a[rowStart + i][colStart + k] * kernel[k][j];
+                }
+            }
+        }
+        return result;
+    }
+
     public static double[][] product(double[] a, double[][] b) {
         checkProductCompatibility(a, b);
 
@@ -64,13 +86,7 @@ public class MathUtils {
         for (int i = 0; i < outputDepth; i++) {
             for (int j = 0; j < outputHeight; j++) {
                 for (int k = 0; k < outputWidth; k++) {
-                    double comp = 0;
-                    for (int l = j; l < j + stride; j++) {
-                        for (int m = k; m < k + stride; m++) {
-                            //todo
-                            return null;
-                        }
-                    }
+                    //todo
                 }
             }
         }
