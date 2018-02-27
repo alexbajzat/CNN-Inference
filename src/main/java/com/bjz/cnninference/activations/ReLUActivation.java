@@ -18,6 +18,15 @@ public class ReLUActivation implements Activation {
         return processed;
     }
 
+    public double[][][] apply(double[][][] x) {
+        double[][][] processed = new double[x.length][x[0].length][x[0][0].length]; // the output
+        for (int i = 0; i < processed.length; i++) {
+            processed[i] = apply(x[i]);
+        }
+        return processed;
+    }
+
+
     public double[] apply(double[] x) {
         double[] processed = new double[x.length]; // the output
         for (int j = 0; j < processed.length; j++) {

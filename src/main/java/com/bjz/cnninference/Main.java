@@ -1,7 +1,6 @@
 package com.bjz.cnninference;
 
 import com.bjz.cnninference.activations.ReLUActivation;
-import com.bjz.cnninference.layers.ActivationSimpleLayer;
 import com.bjz.cnninference.layers.ComplexLayer;
 import com.bjz.cnninference.layers.MaxPoolingComplexLayer;
 import com.bjz.cnninference.layers.SimpleLayer;
@@ -17,9 +16,6 @@ public class Main {
         double[][] biases = {{1, 1, 1, 1}};
         double[][][] b = {{{-1, 1, -1, 1}, {-1, -1, -1, 1}, {-1, -1, -1, 1}, {-1, -1, -1, 1}}
                 , {{-1, 1, -1, 1}, {-1, -1, -1, 1}, {-1, -1, -1, 1}, {-1, -1, -1, 1}}};  // (2,4,4)
-
-        SimpleLayer simpleLayer = new ActivationSimpleLayer(new ReLUActivation(), weight, biases);
-        double[][] result = simpleLayer.forward(a);
 
         ComplexLayer complexLayer = new MaxPoolingComplexLayer();
         double[][][] result2 = complexLayer.forward(b);

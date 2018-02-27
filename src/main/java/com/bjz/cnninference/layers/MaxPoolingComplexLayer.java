@@ -6,8 +6,8 @@ import com.bjz.cnninference.exceptions.InvalidArgumentException;
  * Created on 2/8/2018.
  */
 public class MaxPoolingComplexLayer implements ComplexLayer {
-    private int fieldSize = 2;
-    private int stride = 2;
+    private final int fieldSize = 2;
+    private final int stride = 2;
 
     //todo add custom params feature for future release
 //    public MaxPoolingComplexLayer(int stride, int fieldSize) {
