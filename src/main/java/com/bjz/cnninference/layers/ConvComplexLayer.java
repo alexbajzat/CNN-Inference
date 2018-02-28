@@ -1,6 +1,7 @@
 package com.bjz.cnninference.layers;
 
 import com.bjz.cnninference.activations.Activation;
+import com.bjz.cnninference.layers.api.ComplexLayer;
 import com.bjz.cnninference.utils.MathUtils;
 import com.bjz.cnninference.utils.ObjectUtils;
 
@@ -45,7 +46,7 @@ public class ConvComplexLayer implements ComplexLayer {
         }
         double[][][] weighted = MathUtils.convolve(x, this.filters, this.stride);
         if (!ObjectUtils.isNull(activation)) {
-            weighted = this.activation.apply(x);
+            return this.activation.apply(x);
         }
         return weighted;
     }

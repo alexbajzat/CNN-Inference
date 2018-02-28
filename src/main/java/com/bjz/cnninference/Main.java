@@ -1,9 +1,8 @@
 package com.bjz.cnninference;
 
-import com.bjz.cnninference.activations.ReLUActivation;
-import com.bjz.cnninference.layers.ComplexLayer;
+import com.bjz.cnninference.layers.FlatteningTransitionLayer;
+import com.bjz.cnninference.layers.api.ComplexLayer;
 import com.bjz.cnninference.layers.MaxPoolingComplexLayer;
-import com.bjz.cnninference.layers.SimpleLayer;
 import com.bjz.cnninference.utils.MathUtils;
 
 /**
@@ -31,6 +30,12 @@ public class Main {
         double[][][] result3 = MathUtils.convolve(b, filters, 1);
         System.out.println("Result: ");
         printMatrix(result3);
+        System.out.println("Normal");
+        printMatrix(b);
+        System.out.println("Flatten: ");
+        double[][][] yes = new double[1][][];
+        yes[0] = new FlatteningTransitionLayer().apply(b);
+        printMatrix(yes);
 
     }
 

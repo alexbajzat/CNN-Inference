@@ -35,6 +35,18 @@ public class MathUtils {
         return result;
     }
 
+    public static double[][] add(double[][] a, double[] b) {
+        checkAddCompatibility(a, b);
+        double[][] result = new double[a.length][a[0].length];
+
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                result[i][j] = a[i][j] + b[j];
+            }
+        }
+        return result;
+    }
+
     /***
      *
      * @param a         the target on wich the convolution will be made
@@ -111,6 +123,7 @@ public class MathUtils {
         }
     }
 
+
     /***
      *
      * @param a     first operand
@@ -120,6 +133,18 @@ public class MathUtils {
     private static void checkAddCompatibility(double[][] a, double[][] b) {
         if (a.length != b.length || a[0].length != b[0].length) {
             throw new InvalidArgumentException(String.format("Cannot add shapes (%d, %d) and (%d, %d)", a.length, a[0].length, b.length, b[0].length));
+        }
+    }
+
+    /***
+     *
+     * @param a     first operand
+     * @param b     second operand
+     * @exception InvalidArgumentException if the two values are add incompatible
+     */
+    private static void checkAddCompatibility(double[][] a, double[] b) {
+        if (a[0].length != b.length) {
+            throw new InvalidArgumentException(String.format("Cannot add shapes (%d, %d) and (%d)", a.length, a[0].length, b.length));
         }
     }
 }

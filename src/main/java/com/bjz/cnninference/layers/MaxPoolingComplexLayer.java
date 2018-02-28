@@ -1,6 +1,7 @@
 package com.bjz.cnninference.layers;
 
 import com.bjz.cnninference.exceptions.InvalidArgumentException;
+import com.bjz.cnninference.layers.api.ComplexLayer;
 
 /**
  * Created on 2/8/2018.
