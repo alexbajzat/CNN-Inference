@@ -1,6 +1,7 @@
 package com.bjz.cnninference.layers;
 
 import com.bjz.cnninference.activations.Activation;
+import com.bjz.cnninference.exceptions.InvalidConfigurationException;
 import com.bjz.cnninference.layers.api.ComplexLayer;
 import com.bjz.cnninference.utils.MathUtils;
 import com.bjz.cnninference.utils.ObjectUtils;
@@ -42,7 +43,10 @@ public class ConvComplexLayer implements ComplexLayer {
 
     public double[][][] forward(double[][][] x) {
         if (keepRatio) {
-            //todo pad the input
+            if (this.stride != 1) {
+                throw new InvalidConfigurationException("Cannot 0 pad if stride != 1");
+            }
+            x = MathUtils.zeroPad(x, (this.filterHeight - 1) / 2, (this.filterWidth - 1) / 2);
         }
         double[][][] weighted = MathUtils.convolve(x, this.filters, this.stride);
         if (!ObjectUtils.isNull(activation)) {

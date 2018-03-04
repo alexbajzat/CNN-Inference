@@ -20,19 +20,19 @@ public class Main {
     private static final Random random = new Random();
 
     public static void main(String[] args) {
-        double[][][] input = generateRandom3d(1, 10, 10);
-        double[][][] kernels = generateRandom3d(3, 2, 2);
-        double[][] weights = generateRandom2d(4, 2);
-        double[] biases1 = generateRandom1d(2);
-        double[][] weights2 = generateRandom2d(2, 5);
-        double[] biases2 = generateRandom1d(5);
+        double[][][] input = generateRandom3d(1, 4, 4, 100);
+        double[][][] kernels = generateRandom3d(3, 2, 2, 100);
+        double[][] weights = generateRandom2d(100, 2, 100);
+        double[] biases1 = generateRandom1d(2, 100);
+        double[][] weights2 = generateRandom2d(2, 5, 100);
+        double[] biases2 = generateRandom1d(5, 100);
 
         Model model = Model.builder()
-                .addComplexLayer(new ConvComplexLayer(kernels, 2, false))
-                .addComplexLayer(new ConvComplexLayer(kernels, 2, true, new ReLUActivation()))
+                .addComplexLayer(new ConvComplexLayer(kernels, 1, true))
+                .addComplexLayer(new ConvComplexLayer(kernels, 1, true, new ReLUActivation()))
                 .setTransitionLayer(new FlatteningTransitionLayer())
-                .addSimpleLayer(new HiddenSimpleLayer(new ReLUActivation(), weights, biases1))
-                .addSimpleLayer(new HiddenSimpleLayer(new ReLUActivation(), weights2, biases2))
+//                .addSimpleLayer(new HiddenSimpleLayer(new ReLUActivation(), weights, biases1))
+//                .addSimpleLayer(new HiddenSimpleLayer(new ReLUActivation(), weights2, biases2))
                 .build();
         model.predict(input);
 
@@ -61,34 +61,34 @@ public class Main {
         }
     }
 
-    public static double[][][] generateRandom3d(int depth, int height, int width) {
+    public static double[][][] generateRandom3d(int depth, int height, int width, int max) {
         double[][][] result = new double[depth][height][width];
 
         for (int k = 0; k < depth; k++) {
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
-                    result[k][i][j] = random.nextInt() % 2;
+                    result[k][i][j] = random.nextInt() % max;
                 }
             }
         }
         return result;
     }
 
-    public static double[][] generateRandom2d(int height, int width) {
+    public static double[][] generateRandom2d(int height, int width, int max) {
         double[][] result = new double[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                result[i][j] = random.nextInt() % 2;
+                result[i][j] = random.nextInt() % max;
             }
         }
 
         return result;
     }
 
-    public static double[] generateRandom1d(int width) {
+    public static double[] generateRandom1d(int width, int max) {
         double[] result = new double[width];
         for (int j = 0; j < width; j++) {
-            result[j] = random.nextInt() % 2;
+            result[j] = random.nextInt() % max;
         }
         return result;
     }

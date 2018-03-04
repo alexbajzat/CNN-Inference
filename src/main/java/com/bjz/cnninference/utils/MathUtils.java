@@ -92,6 +92,11 @@ public class MathUtils {
 
         // initialize result with it`s shrunk size
         int outputDepth = target.length * filters.length;
+        if ((targetHeight - filterHeight) % stride != 0 || (targetWidth - filterWidth) % stride != 0) {
+            throw new InvalidArgumentException(String.format("Configuration of format -  height: %d, width: %d and stride: %d " +
+                            "is unsupported for current shape of input (%d, %d, %d)"
+                    , filterHeight, filterWidth, stride, target.length, target[0].length, target[0][0].length));
+        }
         int outputHeight = (targetHeight - filterHeight) / stride + 1;
         int outputWidth = (targetWidth - filterWidth) / stride + 1;
         double[][][] result = new double[outputDepth][outputHeight][outputWidth];
@@ -128,6 +133,30 @@ public class MathUtils {
             }
         }
         return indexes;
+    }
+
+
+    /***
+     *
+     * @param target        input to be padded
+     * @param zeroCountX    number of zeros to be added on X axis
+     * @param zeroCountY    number of zeros to be added on Y axis
+     * @return input padded with 0
+     */
+    public static double[][][] zeroPad(double[][][] target, int zeroCountX, int zeroCountY) {
+        if (zeroCountX == 0 && zeroCountY == 0) {
+            return target;
+        }
+        int heightSize = target[0].length + zeroCountY * 2;
+        int widthSize = target[0][0].length + zeroCountX * 2;
+        double[][][] result = new double[target.length][heightSize][widthSize];
+        int heightStop = result[0].length - zeroCountY;
+        for (int channel = 0; channel < target.length; channel++) {
+            for (int i = zeroCountY; i < heightStop; i++) {
+                System.arraycopy(target[channel][i - zeroCountY], 0, result[channel][i], zeroCountX, target[channel][i - zeroCountY].length);
+            }
+        }
+        return result;
     }
 
     /***
