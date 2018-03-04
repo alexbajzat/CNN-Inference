@@ -111,6 +111,25 @@ public class MathUtils {
         return result;
     }
 
+
+    /**
+     * @param a input to calculate max along x axis
+     * @return array containing indexes of max values along each row
+     */
+    public static int[] maxIndicesX(double[][] a) {
+        int[] indexes = new int[a.length];
+        for (int i = 0; i < a.length; i++) {
+            double max = Double.NEGATIVE_INFINITY;
+            for (int j = 0; j < a[i].length; j++) {
+                if (a[i][j] > max) {
+                    max = a[i][j];
+                    indexes[i] = j;
+                }
+            }
+        }
+        return indexes;
+    }
+
     /***
      *
      * @param a     first operand
