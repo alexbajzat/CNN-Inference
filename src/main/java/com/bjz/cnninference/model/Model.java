@@ -3,9 +3,9 @@ package com.bjz.cnninference.model;
 import com.bjz.cnninference.layers.api.ComplexLayer;
 import com.bjz.cnninference.layers.api.SimpleLayer;
 import com.bjz.cnninference.layers.api.TransitionLayer;
+import com.bjz.cnninference.prediction.PredictionResult;
 import com.bjz.cnninference.utils.MathUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,9 +29,9 @@ public class Model {
     /***
      *
      * @param input raw input ( CxHxW )
-     * @return array of predictions among each dimension
+     * @return {@link PredictionResult} containing probabilites and raw results for each index
      */
-    public int[] predict(double[][][] input) {
+    public PredictionResult predict(double[][][] input) {
         for (ComplexLayer layer : complexLayers) {
             input = layer.forward(input);
         }
@@ -39,6 +39,12 @@ public class Model {
         for (SimpleLayer layer : simpleLayers) {
             flatten = layer.forward(flatten);
         }
-        return MathUtils.maxIndicesX(flatten);
+
+        double[] rawResult = flatten[0];
+        double[] probabilites = MathUtils.probabilityVector(rawResult);
+
+        return new PredictionResult()
+                .setProbabilites(probabilites)
+                .setRawResults(rawResult);
     }
 }

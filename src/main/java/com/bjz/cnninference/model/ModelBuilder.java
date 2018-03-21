@@ -17,8 +17,8 @@ public class ModelBuilder {
     private TransitionLayer transitionLayer;
 
     public Model build() {
-        if (simpleLayers.isEmpty() && complexLayers.isEmpty()) {
-            throw new InvalidConfigurationException("Empty model");
+        if (simpleLayers.isEmpty() || (complexLayers.isEmpty() && simpleLayers.isEmpty())) {
+            throw new InvalidConfigurationException("Inconsistent layer configuration");
         }
         if (transitionLayer == null) {
             throw new InvalidConfigurationException("No transition layer present");

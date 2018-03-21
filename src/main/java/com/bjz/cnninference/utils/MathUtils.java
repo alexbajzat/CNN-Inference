@@ -159,6 +159,29 @@ public class MathUtils {
         return result;
     }
 
+    /**
+     * using the formula  e^X/sum(e^X)
+     *
+     * @param vector unnormalized vector
+     * @return the probability vector based on the input
+     */
+    public static double[] probabilityVector(double[] vector) {
+        double[] result = new double[vector.length];
+        double sum = 0;
+
+        for (int i = 0; i < vector.length; i++) {
+            double el = Math.exp(vector[i]);
+            sum += el;
+            result[i] = el;
+        }
+
+        for (int i = 0; i < result.length; i++) {
+            result[i] /= sum;
+        }
+
+        return result;
+    }
+
     /***
      *
      * @param a     first operand
