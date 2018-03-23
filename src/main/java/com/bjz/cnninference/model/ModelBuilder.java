@@ -1,9 +1,9 @@
 package com.bjz.cnninference.model;
 
 import com.bjz.cnninference.exceptions.InvalidConfigurationException;
-import com.bjz.cnninference.layers.api.ComplexLayer;
-import com.bjz.cnninference.layers.api.SimpleLayer;
-import com.bjz.cnninference.layers.api.TransitionLayer;
+import com.bjz.cnninference.layers.apis.ComplexLayer;
+import com.bjz.cnninference.layers.apis.SimpleLayer;
+import com.bjz.cnninference.layers.apis.TransitionLayer;
 
 import java.util.ArrayList;
 import java.util.List;

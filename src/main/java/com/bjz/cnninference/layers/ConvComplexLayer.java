@@ -2,7 +2,7 @@ package com.bjz.cnninference.layers;
 
 import com.bjz.cnninference.activations.Activation;
 import com.bjz.cnninference.exceptions.InvalidConfigurationException;
-import com.bjz.cnninference.layers.api.ComplexLayer;
+import com.bjz.cnninference.layers.apis.ComplexLayer;
 import com.bjz.cnninference.utils.MathUtils;
 import com.bjz.cnninference.utils.ObjectUtils;
 

@@ -1,6 +1,6 @@
 package com.bjz.cnninference.layers;
 
-import com.bjz.cnninference.layers.api.TransitionLayer;
+import com.bjz.cnninference.layers.apis.TransitionLayer;
 
 import static java.lang.System.arraycopy;
 

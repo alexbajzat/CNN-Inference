@@ -1,7 +1,7 @@
 package com.bjz.cnninference.layers;
 
 import com.bjz.cnninference.activations.Activation;
-import com.bjz.cnninference.layers.api.SimpleLayer;
+import com.bjz.cnninference.layers.apis.SimpleLayer;
 import com.bjz.cnninference.utils.MathUtils;
 import com.bjz.cnninference.utils.ObjectUtils;
 
