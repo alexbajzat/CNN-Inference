@@ -50,7 +50,7 @@ public class ConvComplexLayer implements ComplexLayer {
         }
         double[][][] weighted = MathUtils.convolve(x, this.filters, this.stride);
         if (!ObjectUtils.isNull(activation)) {
-            return this.activation.apply(x);
+            return this.activation.apply(weighted);
         }
         return weighted;
     }

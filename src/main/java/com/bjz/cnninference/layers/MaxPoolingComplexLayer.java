@@ -10,12 +10,6 @@ public class MaxPoolingComplexLayer implements ComplexLayer {
     private final int fieldSize = 2;
     private final int stride = 2;
 
-    //todo add custom params feature for future release
-//    public MaxPoolingComplexLayer(int stride, int fieldSize) {
-//        this.stride = stride;
-//        this.fieldSize = fieldSize;
-//    }
-
     /***
      * default value constructor
      * reduces data to half it`s size
