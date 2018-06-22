@@ -39,9 +39,9 @@ public class MathUtils {
         checkAddCompatibility(a, b);
         double[][] result = new double[a.length][a[0].length];
 
-        for (int i = 0; i < result.length; i++) {
-            for (int j = 0; j < result[0].length; j++) {
-                result[i][j] = a[i][j] + b[j];
+        for (int j = 0; j < result[0].length; j++) {
+            for (int i = 0; i < result.length; i++) {
+                result[i][j] = a[i][j] + b[i];
             }
         }
         return result;
