@@ -16,8 +16,8 @@ import java.util.Random;
  */
 public class Main {
     public static void main(String[] args) {
-        double[][][] filters = MatrixUtils.generateRandom3d(3, 3, 3, 2);
-        double[][] weights = MatrixUtils.generateRandom2d(300, 3, 2);
+        double[][][][] filters = MatrixUtils.generateRandom4d(1, 3, 3, 3, 2);
+        double[][] weights = MatrixUtils.generateRandom2d(100, 3, 2);
         double[] biases = MatrixUtils.generateRandom1d(3, 1);
         double[][][] target = MatrixUtils.generateRandom3d(1, 10, 10, 2);
 

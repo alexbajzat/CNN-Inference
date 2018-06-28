@@ -55,7 +55,7 @@ public class MathUtils {
      * @param colStart  the lower right corner index where it ends
      * @return the value after the convolution operation
      */
-    public static double productWithKernel(double[][][] a, double[][] kernel, int depthSlice, int rowStart, int colStart) {
+    public static double productWithKernel(double[][][] a, double[][][] kernel, int depthSlice, int rowStart, int colStart) {
         int kernelHeight = kernel.length;
         int kernelWidth = kernel[0].length;
         int verticalBound = rowStart + kernelHeight;
@@ -68,7 +68,7 @@ public class MathUtils {
         double result = 0;
         for (int i = 0; i < kernelHeight; i++) {
             for (int j = 0; j < kernelWidth; j++) {
-                result += a[depthSlice][rowStart + i][colStart + j] * kernel[i][j];
+                result += a[depthSlice][rowStart + i][colStart + j] * kernel[depthSlice][i][j];
             }
         }
         return result;
@@ -82,19 +82,20 @@ public class MathUtils {
      * @param stride    the step size of the moving kernels
      * @return 3 dimensional convolved matrix, the matrix may have shrunked size if not padded
      */
-    public static double[][][] convolve(double[][][] target, double[][][] filters, int stride) {
+    public static double[][][] convolve(double[][][] target, double[][][][] filters, int stride) {
         int filterHeight = filters[0].length;
         int filterWidth = filters[0][0].length;
         int targetHeight = target[0].length;
         int targetWidth = target[0][0].length;
 
-        // initialize result with it`s shrunk size
         int outputDepth = target.length * filters.length;
         if ((targetHeight - filterHeight) % stride != 0 || (targetWidth - filterWidth) % stride != 0) {
             throw new InvalidArgumentException(String.format("Configuration of format -  height: %d, width: %d and stride: %d " +
                             "is unsupported for current shape of input (%d, %d, %d)"
                     , filterHeight, filterWidth, stride, target.length, target[0].length, target[0][0].length));
         }
+
+        // initialize result with it`s shrunk size
         int outputHeight = (targetHeight - filterHeight) / stride + 1;
         int outputWidth = (targetWidth - filterWidth) / stride + 1;
         double[][][] result = new double[outputDepth][outputHeight][outputWidth];
@@ -106,7 +107,7 @@ public class MathUtils {
                     for (int j = 0; j < outputWidth; j += stride) {
                         // apply filters
                         // calculate the convolution on a given channel for position i and j
-                        result[depth][i][j] = productWithKernel(target, filters[filterN], k % target.length, i, j);
+                        result[depth][i][j] = productWithKernel(target, filters[filterN], depth, i, j);
                     }
                 }
                 depth++;

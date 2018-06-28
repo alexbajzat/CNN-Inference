@@ -30,6 +30,20 @@ public class MatrixUtils {
         }
     }
 
+    public static double[][][][] generateRandom4d(int number, int depth, int height, int width, int max) {
+        double[][][][] result = new double[number][depth][height][width];
+        for (int d = 0; d < number; d++) {
+            for (int k = 0; k < depth; k++) {
+                for (int i = 0; i < height; i++) {
+                    for (int j = 0; j < width; j++) {
+                        result[d][k][i][j] = random.nextInt() % max;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
     public static double[][][] generateRandom3d(int depth, int height, int width, int max) {
         double[][][] result = new double[depth][height][width];
 

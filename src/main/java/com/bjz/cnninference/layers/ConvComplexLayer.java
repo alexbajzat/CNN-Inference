@@ -14,7 +14,7 @@ public class ConvComplexLayer implements ComplexLayer {
     private int filterHeight;
     private int filterWidth;
     private boolean keepRatio;
-    private double[][][] filters;
+    private double[][][][] filters;
     private int stride;
 
     /***
@@ -24,7 +24,7 @@ public class ConvComplexLayer implements ComplexLayer {
      * @param keepRatio     flag whether to pad the input or not
      * @param activation    activation object
      */
-    public ConvComplexLayer(double[][][] filters, int stride, boolean keepRatio, Activation activation) {
+    public ConvComplexLayer(double[][][][] filters, int stride, boolean keepRatio, Activation activation) {
         this.stride = stride;
         this.filters = filters;
         this.keepRatio = keepRatio;
@@ -37,7 +37,7 @@ public class ConvComplexLayer implements ComplexLayer {
      * the non-activation constructor
      * other params keep syntactic meaning
      */
-    public ConvComplexLayer(double[][][] filters, int stride, boolean keepRatio) {
+    public ConvComplexLayer(double[][][][] filters, int stride, boolean keepRatio) {
         this(filters, stride, keepRatio, null);
     }
 
