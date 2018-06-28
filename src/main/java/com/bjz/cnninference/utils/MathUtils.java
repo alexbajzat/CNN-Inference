@@ -56,8 +56,8 @@ public class MathUtils {
      * @return the value after the convolution operation
      */
     public static double productWithKernel(double[][][] a, double[][][] kernel, int depthSlice, int rowStart, int colStart) {
-        int kernelHeight = kernel.length;
-        int kernelWidth = kernel[0].length;
+        int kernelHeight = kernel[0].length;
+        int kernelWidth = kernel[0][0].length;
         int verticalBound = rowStart + kernelHeight;
         int horizontalBound = colStart + kernelWidth;
 
@@ -83,8 +83,8 @@ public class MathUtils {
      * @return 3 dimensional convolved matrix, the matrix may have shrunked size if not padded
      */
     public static double[][][] convolve(double[][][] target, double[][][][] filters, int stride) {
-        int filterHeight = filters[0].length;
-        int filterWidth = filters[0][0].length;
+        int filterHeight = filters[0][0].length;
+        int filterWidth = filters[0][0][0].length;
         int targetHeight = target[0].length;
         int targetWidth = target[0][0].length;
 

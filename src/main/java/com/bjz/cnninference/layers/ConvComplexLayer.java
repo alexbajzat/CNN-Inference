@@ -28,8 +28,8 @@ public class ConvComplexLayer implements ComplexLayer {
         this.stride = stride;
         this.filters = filters;
         this.keepRatio = keepRatio;
-        this.filterHeight = filters[0].length;
-        this.filterWidth = filters[0][0].length;
+        this.filterHeight = filters[0][0].length;
+        this.filterWidth = filters[0][0][0].length;
         this.activation = activation;
     }
 
