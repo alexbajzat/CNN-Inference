@@ -99,10 +99,9 @@ public class MathUtils {
         int outputHeight = (targetHeight - filterHeight) / stride + 1;
         int outputWidth = (targetWidth - filterWidth) / stride + 1;
         double[][][] result = new double[outputDepth][outputHeight][outputWidth];
-        int depth = 0;
         // convolve the target by the given stride and calculate the result for each position
         for (int filterN = 0; filterN < filters.length; filterN++) {
-            for (int k = 0; k < target.length; k += 1) {
+            for (int depth = 0; depth < target.length; depth += 1) {
                 for (int i = 0; i < outputHeight; i += stride) {
                     for (int j = 0; j < outputWidth; j += stride) {
                         // apply filters
@@ -110,7 +109,7 @@ public class MathUtils {
                         result[depth][i][j] = productWithKernel(target, filters[filterN], depth, i, j);
                     }
                 }
-                depth++;
+
             }
         }
         return result;
