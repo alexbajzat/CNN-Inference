@@ -25,8 +25,8 @@ public class LayersTests {
         };
 
         double[][][] expected = {
-                {{4, 6, 6, 4}, {6, 9, 9, 6}, {4, 6, 6, 4}},
-                {{8, 12, 12, 8}, {12, 18, 18, 12}, {8, 12, 12, 8}}
+                {{8, 12, 12, 8}, {12, 18, 18, 12}, {8, 12, 12, 8}},
+                {{16, 24, 24, 16}, {24, 36, 36, 24}, {16, 24, 24, 16}}
         };
 
         ConvComplexLayer convComplexLayer = new ConvComplexLayer(filters, 1, true);

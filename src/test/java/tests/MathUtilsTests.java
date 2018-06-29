@@ -19,9 +19,17 @@ public class MathUtilsTests {
         double[][][] kernel = {{
                 {2, 2, 2},
                 {2, 2, 2},
-                {2, 2, 2}}};
+                {2, 2, 2}},
+                {
+                        {2, 2, 2},
+                        {2, 2, 2},
+                        {2, 2, 2}},
+                {
+                        {2, 2, 2},
+                        {2, 2, 2},
+                        {2, 2, 2}}};
 
-        Double v = MathUtils.productWithKernel(target, kernel, 0, 0, 0);
+        Double v = MathUtils.productWithKernel(target, kernel, 0, 0);
         Double expectedValue = 0d;
         Assert.assertTrue(v.equals(expectedValue));
     }
@@ -60,8 +68,8 @@ public class MathUtilsTests {
         };
 
         double[][][] expected = {
-                {{9, 9}, {9, 9}},
-                {{18, 18}, {18, 18}}
+                {{27, 27}, {27, 27}},
+                {{27, 27}, {27, 27}}
         };
 
         double[][][] convolve = MathUtils.convolve(target, filters, 1);

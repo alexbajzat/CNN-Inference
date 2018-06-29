@@ -55,7 +55,7 @@ public class MathUtils {
      * @param colStart  the lower right corner index where it ends
      * @return the value after the convolution operation
      */
-    public static double productWithKernel(double[][][] a, double[][][] kernel, int depthSlice, int rowStart, int colStart) {
+    public static double productWithKernel(double[][][] a, double[][][] kernel, int rowStart, int colStart) {
         int kernelHeight = kernel[0].length;
         int kernelWidth = kernel[0][0].length;
         int verticalBound = rowStart + kernelHeight;
@@ -66,9 +66,15 @@ public class MathUtils {
         }
 
         double result = 0;
-        for (int i = 0; i < kernelHeight; i++) {
-            for (int j = 0; j < kernelWidth; j++) {
-                result += a[depthSlice][rowStart + i][colStart + j] * kernel[depthSlice][i][j];
+        if (a.length != kernel.length) {
+            throw new InvalidArgumentException("Input channel and number of filters must be the same.");
+        }
+
+        for (int depth = 0; depth < a.length; depth++) {
+            for (int i = 0; i < kernelHeight; i++) {
+                for (int j = 0; j < kernelWidth; j++) {
+                    result += a[depth][rowStart + i][colStart + j] * kernel[depth][i][j];
+                }
             }
         }
         return result;
@@ -101,15 +107,12 @@ public class MathUtils {
         double[][][] result = new double[outputDepth][outputHeight][outputWidth];
         // convolve the target by the given stride and calculate the result for each position
         for (int filterN = 0; filterN < filters.length; filterN++) {
-            for (int depth = 0; depth < target.length; depth += 1) {
-                for (int i = 0; i < outputHeight; i += stride) {
-                    for (int j = 0; j < outputWidth; j += stride) {
-                        // apply filters
-                        // calculate the convolution on a given channel for position i and j
-                        result[filterN][i][j] = productWithKernel(target, filters[filterN], depth, i, j);
-                    }
+            for (int i = 0; i < outputHeight; i += stride) {
+                for (int j = 0; j < outputWidth; j += stride) {
+                    // apply filters
+                    // calculate the convolution on a given channel for position i and j
+                    result[filterN][i][j] = productWithKernel(target, filters[filterN], i, j);
                 }
-
             }
         }
         return result;
