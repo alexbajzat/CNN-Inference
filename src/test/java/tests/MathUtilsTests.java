@@ -21,9 +21,9 @@ public class MathUtilsTests {
                 {2, 2, 2},
                 {2, 2, 2}}};
 
-//        Double v = MathUtils.productWithKernel(target, kernel, 0, 0, 0);
+        Double v = MathUtils.productWithKernel(target, kernel, 0, 0, 0);
         Double expectedValue = 0d;
-//        Assert.assertTrue(v.equals(expectedValue));
+        Assert.assertTrue(v.equals(expectedValue));
     }
 
 
@@ -49,19 +49,26 @@ public class MathUtilsTests {
         double[][][][] filters = {{
                 {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}},
                 {{2, 2, 2}, {2, 2, 2}, {2, 2, 2}},
+        }, {
+                {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}},
+                {{2, 2, 2}, {2, 2, 2}, {2, 2, 2}},
         }};
 
         double[][][] target = {{
-                {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}},
-                {{1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}}
+                {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}},
+                {{1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}}
         };
 
         double[][][] expected = {
-                {{9, 9}}, {{9, 9}}, {{18, 18}}, {{18, 18}}};
+                {{9, 9}, {9, 9}},
+                {{18, 18}, {18, 18}}
+        };
 
-//        double[][][] convolve = MathUtils.convolve(target, filters, 1);
+        double[][][] convolve = MathUtils.convolve(target, filters, 1);
 
-//        checkResultAndExpectations(expected, convolve);
+        Assert.assertTrue(convolve.length == filters.length);
+
+        checkResultAndExpectations(expected, convolve);
 
     }
 

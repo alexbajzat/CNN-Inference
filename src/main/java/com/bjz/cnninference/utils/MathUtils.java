@@ -88,7 +88,7 @@ public class MathUtils {
         int targetHeight = target[0].length;
         int targetWidth = target[0][0].length;
 
-        int outputDepth = target.length * filters.length;
+        int outputDepth = filters.length;
         if ((targetHeight - filterHeight) % stride != 0 || (targetWidth - filterWidth) % stride != 0) {
             throw new InvalidArgumentException(String.format("Configuration of format -  height: %d, width: %d and stride: %d " +
                             "is unsupported for current shape of input (%d, %d, %d)"
@@ -106,7 +106,7 @@ public class MathUtils {
                     for (int j = 0; j < outputWidth; j += stride) {
                         // apply filters
                         // calculate the convolution on a given channel for position i and j
-                        result[depth][i][j] = productWithKernel(target, filters[filterN], depth, i, j);
+                        result[filterN][i][j] = productWithKernel(target, filters[filterN], depth, i, j);
                     }
                 }
 

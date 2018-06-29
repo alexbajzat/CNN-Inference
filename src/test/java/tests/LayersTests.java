@@ -14,10 +14,9 @@ public class LayersTests {
 
     @Test
     public void testConvLayer() {
-        double[][][] filters = {
-                {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}},
-                {{2, 2, 2}, {2, 2, 2}, {2, 2, 2}},
-
+        double[][][][] filters = {
+                {{{1, 1, 1}, {1, 1, 1}, {1, 1, 1}}, {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}}},
+                {{{2, 2, 2}, {2, 2, 2}, {2, 2, 2}}, {{2, 2, 2}, {2, 2, 2}, {2, 2, 2}}}
         };
 
         double[][][] target = {{
@@ -27,15 +26,13 @@ public class LayersTests {
 
         double[][][] expected = {
                 {{4, 6, 6, 4}, {6, 9, 9, 6}, {4, 6, 6, 4}},
-                {{4, 6, 6, 4}, {6, 9, 9, 6}, {4, 6, 6, 4}},
-                {{8, 12, 12, 8}, {12, 18, 18, 12}, {8, 12, 12, 8}},
                 {{8, 12, 12, 8}, {12, 18, 18, 12}, {8, 12, 12, 8}}
         };
 
-//        ConvComplexLayer convComplexLayer = new ConvComplexLayer(filters, 1, true);
-//        double[][][] forward = convComplexLayer.forward(target);
-//
-//        checkResultAndExpectations(expected, forward);
+        ConvComplexLayer convComplexLayer = new ConvComplexLayer(filters, 1, true);
+        double[][][] forward = convComplexLayer.forward(target);
+
+        checkResultAndExpectations(expected, forward);
     }
 
 
